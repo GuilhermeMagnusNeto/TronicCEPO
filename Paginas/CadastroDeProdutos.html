@@ -41,9 +41,95 @@
 </div>
 
 <!-- CORPO -->
-<body class="mx-0 mt-0 px-0 pt-0">
+<body class="mx-auto mt-0 px-0 pt-0">
     <img src="../Imagens/BannerHeader.jpeg" class="d-flex align-items-center mb-3 w-100">
-    <h1>Pagina de cadastro de produtos</h1>
+    <form class="mx-5">
+        <div class="form-group mb-3">
+            <label for="formGroupExampleInput">Marca</label>
+            <select class="form-control">
+                <option>Apple</option>
+                <option>Samsung</option>
+                <option>Xiaomi</option>
+                <option>Motorola</option>
+                <option>LG</option>
+                <option>Outra</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Modelo</label>
+            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="iPhone 14">
+        </div>
+        <div class="row ">
+            <div class="form-group col-md mt-3">
+                <label for="formGroupExampleInput2">Cor</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Preto">
+            </div>
+            <div class="form-group col-md mt-3">
+                <label for="formGroupExampleInput2">Armazenamento</label>
+                <select class="form-control">
+                    <option>64</option>
+                    <option>128</option>
+                    <option>256</option>
+                    <option>512</option>
+                    <option>1</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="form-group col-md mt-3">
+                <label for="formGroupExampleInput2">IMEI</label>
+                <input type="number" min="0" class="form-control" id="formGroupExampleInput2" placeholder="xxxxxxxxxxxxxxx">
+            </div>
+            <div class="form-group col-md mt-3">
+                <label for="formGroupExampleInput2">Memória RAM</label>
+                <input type="number" min="0" class="form-control" id="formGroupExampleInput2" placeholder="8">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput">Nome do Antigo Dono</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="João da Silva Santos">
+        </div>
+        <div class="row mb-3">
+            <div class="form-group col-md mt-3">
+                <label for="formGroupExampleInput2">Telefone do Antigo Dono</label>
+                <input type="number" min="0" class="form-control" id="formGroupExampleInput2" placeholder="(xx)xxxxx-xxxx">
+            </div>
+            <div class="form-group col-md mt-3">
+                <label for="formGroupExampleInput2">CPF do Antigo Dono</label>
+                <input type="number" min="0" class="form-control" id="formGroupExampleInput2" placeholder="xxx.xxx.xxx-xx">
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="formGroupExampleInput2">Valor de Compra</label>
+            <input type="number" min="0" class="form-control" id="formGroupExampleInput2" placeholder="R$1000,00">
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+            <label class="form-check-label" for="inlineRadio1">Compra</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+            <label class="form-check-label" for="inlineRadio2">Troca</label>
+        </div>
+        <div class="row mb-3"> 
+            <div class="col-md mt-3">
+                <label for="exampleFormControlFile1">Data da Compra</label>
+                <input type="date" class="form-control p-1" id="exampleFormControlFile1">
+            </div>
+            <div class="col-md mt-3">
+                <label for="exampleFormControlFile1">Imagem</label>
+                <input type="file" class="form-control p-1" id="exampleFormControlFile1">
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="formGroupExampleInput2">Observação</label>
+            <input type="text" maxlength="200" class="form-control" id="formGroupExampleInput2" placeholder="Foi trocado bateria">
+        </div>
+        <div class="row mb-3 d-flex justify-content-evenly mx-auto">
+            <button type="button" class="btn btn-secondary btn-sm col-md-2 py-3 mt-3">Cancelar</button>
+            <button type="submit" class="btn btn-primary btn-sm col-md-2 py-3 mt-3">Cadastrar Celular</button>
+        </div>
+    </form>
 </body>
 
 <!-- RODAPE -->
