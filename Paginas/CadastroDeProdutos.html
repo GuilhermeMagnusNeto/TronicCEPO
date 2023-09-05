@@ -47,7 +47,7 @@
     <form class="mx-5">
         <div class="form-group mb-3">
             <label for="formGroupExampleInput">Marca</label>
-            <select class="form-control">
+            <select class="form-control" required>
                 <option>Apple</option>
                 <option>Samsung</option>
                 <option>Xiaomi</option>
@@ -58,16 +58,16 @@
         </div>
         <div class="form-group">
             <label for="formGroupExampleInput2">Modelo</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="iPhone 14">
+            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="iPhone 14" required>
         </div>
         <div class="row">
             <div class="form-group col-md mt-3">
                 <label for="formGroupExampleInput2">Cor</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Preto">
+                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Preto" required>
             </div>
             <div class="form-group col-md mt-3">
                 <label for="formGroupExampleInput2">Armazenamento</label>
-                <select class="form-control">
+                <select class="form-control" required>
                     <option>0</option>
                     <option>32</option>
                     <option>64</option>
@@ -85,7 +85,7 @@
         <div class="row mb-3">
             <div class="form-group col-md mt-3">
                 <label for="formGroupExampleInput2">IMEI</label>
-                <input type="number" min="0" max="999999999999999" class="form-control" id="formGroupExampleInput2" placeholder="xxxxxxxxxxxxxxx">
+                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="xxxxxxxxxxxxxxx">
             </div>
             <div class="form-group col-md mt-3">
                 <label for="formGroupExampleInput2">Memória RAM</label>
@@ -133,12 +133,12 @@
             </div>
             <div class="col-md mt-3">
                 <label for="exampleFormControlFile1">Imagem do aparelho</label>
-                <input type="file" class="form-control p-1" id="exampleFormControlFile1">
+                <input type="file" class="form-control p-1" id="exampleFormControlFile1" multiple>
             </div>
         </div>
         <div class="form-group mb-3">
             <label for="exampleFormControlFile1">Termo de Compra e Venda Preenchido</label>
-            <input type="file" class="form-control p-1" id="exampleFormControlFile1">
+            <input type="file" class="form-control p-1" id="exampleFormControlFile1" multiple>
         </div>
         <div class="row mb-3 d-flex justify-content-evenly mx-auto">
             <button type="submit" class="btn btn-primary btn-sm col-md-2 py-3 mt-3">Cadastrar Celular</button>
