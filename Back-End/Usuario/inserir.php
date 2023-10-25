@@ -1,6 +1,6 @@
 <?php
 // Conexão com o banco de dados
-$conexao = new mysqli("localhost", "root", "teste123", "tronic");
+$conexao = new mysqli("sql10.freesqldatabase.com", "sql10653561", "bibYa74ZeN", "sql10653561");
 
 // Verifica a conexão
 if ($conexao->connect_error) {

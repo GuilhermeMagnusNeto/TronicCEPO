@@ -1,6 +1,6 @@
 <?php
 // Conexão com o banco de dados
-$conexao = new mysqli("localhost", "root", "teste123", "tronic");
+$conexao = new mysqli("sql10.freesqldatabase.com", "sql10653561", "bibYa74ZeN", "sql10653561");
 
 // Verifica a conexão
 if ($conexao->connect_error) {
@@ -8,9 +8,9 @@ if ($conexao->connect_error) {
 }
 
 // Dados do novo arquivo
-$nomeArquivo = "NOME DO ARQUIVO";  // Nome do Arquivo
+$nomeArquivo = $_POST['nomeArquivo'];  // Nome do Arquivo
 // Caminho para a imagem
-$caminho_da_imagem = '/Users/guilhermemagnus/Desktop/ProjetosVScode/TronicCEPO/Imagens/35432.png';
+$caminho_da_imagem = $_POST['uploadArquivo'];
 // Lê o conteúdo da imagem em uma variável
 $imagemArquivo = file_get_contents($caminho_da_imagem);
 
