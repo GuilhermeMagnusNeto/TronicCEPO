@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Conexão com o banco de dados
-$conexao = new mysqli("localhost", "root", "teste123", "tronic");
+$conexao = new mysqli("tronicdb.c1z34cllhcs6.us-east-2.rds.amazonaws.com", "admin", "SenhaTronic100", "tronic");
 
 // Verifica a conexão
 if ($conexao->connect_error) {
@@ -20,14 +20,12 @@ $resultado = $conexao->query($consulta);
 if ($resultado && $resultado->num_rows > 0) {
     // Autenticação bem-sucedida
     $_SESSION['usuario'] = $usuario; // Armazena o nome de usuário na sessão (pode ser usado para autenticação em páginas subsequentes)
-    header("Location: ../Paginas/PaginaPrincipal.html"); // Redireciona para a página principal
+    header("Location: ../../Paginas/PaginaPrincipal.html"); // Redireciona para a página principal
     exit();
 } else {
     // Autenticação falhou
     header("Location: ../Paginas/login.html"); // Redireciona de volta para a página de login
     exit();
 }
-
-// Fecha a conexão após o uso
 $conexao->close();
 ?>
