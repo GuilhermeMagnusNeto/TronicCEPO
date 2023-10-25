@@ -1,3 +1,27 @@
+<?php
+session_start();
+include('../Back-End/conexao.php');
+
+// Verifique se o usuário está logado
+if (isset($_SESSION['usuario'])) {
+    $usuario = $_SESSION['usuario'];
+    // Realize uma consulta para verificar se o usuário ainda existe no banco de dados
+    $consulta = "SELECT * FROM tbUsuario WHERE pkCodUsu = '$usuario'";
+    $resultado = $conexao->query($consulta);
+    
+    if (!$resultado || $resultado->num_rows === 0) {
+        // Usuário não encontrado no banco de dados, destrua a sessão
+        session_destroy();
+        header("Location: ../Paginas/Login.html");
+        exit();
+    }
+} else {
+    // Se a sessão não existe, redirecione para a página de login
+    header("Location: ../Paginas/Login.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -30,7 +54,7 @@
         </ul>
         <div class="dropdown text-end my-auto mx-auto">
             <a href="" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="../Imagens/DIGITAL.png" alt="icone de uma digital" width="32" height="32" class="rounded-circle">
+                <img src="../Imagens/DIGITAL.png" alt="icone de uma digital" width="32" height="32" class="rounded-circle">
             </a>
             <ul class="dropdown-menu text-small">
                 <li><a class="dropdown-item" href="../Paginas/Funcionarios.html">Funcionários</a></li>
@@ -45,10 +69,10 @@
 <!-- CORPO -->
 <body class="mx-auto mt-0 px-0 pt-0">
     <img src="../Imagens/BannerHeader.jpeg" class="d-flex align-items-center mb-3 w-100">
-    <form class="mx-5">
+    <form class="mx-5" action="../Back-End/Produtos/inserirProduto.php" method="post">
         <div class="form-group mb-3">
             <label for="formGroupExampleInput">Marca</label>
-            <select class="form-control" required>
+            <select class="form-control" name="marca" required>
                 <option>Apple</option>
                 <option>Samsung</option>
                 <option>Xiaomi</option>
@@ -59,16 +83,16 @@
         </div>
         <div class="form-group">
             <label for="formGroupExampleInput2">Modelo</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="iPhone 14" required>
+            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="iPhone 14" name="modelo" required>
         </div>
         <div class="row">
             <div class="form-group col-md mt-3">
                 <label for="formGroupExampleInput2">Cor</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Preto" required>
+                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Preto" name="cor" required>
             </div>
             <div class="form-group col-md mt-3">
                 <label for="formGroupExampleInput2">Armazenamento</label>
-                <select class="form-control" required>
+                <select class="form-control" name="armazenamento" required>
                     <option>0</option>
                     <option>32</option>
                     <option>64</option>
@@ -80,61 +104,61 @@
             </div>
             <div class="form-group col-md mt-3">
                 <label for="formGroupExampleInput2">Procentagem da Bateria</label>
-                <input type="number" min="0" max="100" class="form-control" id="formGroupExampleInput2" placeholder="100">
+                <input type="number" min="0" max="100" class="form-control" id="formGroupExampleInput2" placeholder="100" name="bateria">
             </div>
         </div>
         <div class="row mb-3">
             <div class="form-group col-md mt-3">
                 <label for="formGroupExampleInput2">IMEI</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="xxxxxxxxxxxxxxx">
+                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="xxxxxxxxxxxxxxx" name="imei">
             </div>
             <div class="form-group col-md mt-3">
                 <label for="formGroupExampleInput2">Memória RAM</label>
-                <input type="number" min="0" class="form-control" id="formGroupExampleInput2" placeholder="8">
+                <input type="number" min="0" class="form-control" id="formGroupExampleInput2" placeholder="8" name="memoriaRam">
             </div>
         </div>
         <div class="form-group">
             <label for="formGroupExampleInput">Nome do Antigo Dono</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="João da Silva Santos">
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="João da Silva Santos" name="nomeAntigoDono">
         </div>
         <div class="row mb-3">
             <div class="form-group col-md mt-3">
                 <label for="formGroupExampleInput2">Telefone do Antigo Dono</label>
-                <input type="number" min="0" class="form-control" id="formGroupExampleInput2" placeholder="(xx)xxxxx-xxxx">
+                <input type="number" min="0" class="form-control" id="formGroupExampleInput2" placeholder="(xx)xxxxx-xxxx" name="telefoneAntigoDono">
             </div>
             <div class="form-group col-md mt-3">
                 <label for="formGroupExampleInput2">CPF do Antigo Dono</label>
-                <input type="number" min="0" class="form-control" id="formGroupExampleInput2" placeholder="xxx.xxx.xxx-xx">
+                <input type="number" min="0" class="form-control" id="formGroupExampleInput2" placeholder="xxx.xxx.xxx-xx" name="cpfAntigoDono">
             </div>
         </div>
         <div class="form-group mb-3">
             <label for="formGroupExampleInput2">Valor de Compra</label>
-            <input type="number" min="0" class="form-control" id="formGroupExampleInput2" placeholder="R$1000,00">
+            <input type="number" min="0" class="form-control" id="formGroupExampleInput2" placeholder="R$1000,00" name="valorCompra">
         </div>
         <div class="form-group mb-3">
             <label for="formGroupExampleInput2">Observação</label>
-            <input type="text" maxlength="200" class="form-control" id="formGroupExampleInput2" placeholder="Bateria trocada">
+            <input type="text" maxlength="200" class="form-control" id="formGroupExampleInput2" placeholder="Bateria trocada" name="observacao">
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" name="aquisicao" checked>
             <label class="form-check-label" for="inlineRadio1">Compra</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" name="aquisicao">
             <label class="form-check-label" for="inlineRadio2">Troca</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" name="aquisicao">
             <label class="form-check-label" for="inlineRadio3">Novo</label>
         </div>
         <div class="row mb-3"> 
             <div class="col-md mt-3">
                 <label for="exampleFormControlFile1">Data da Compra</label>
-                <input type="date" class="form-control p-1" id="exampleFormControlFile1">
+                <input type="date" class="form-control p-1" id="exampleFormControlFile1" name="data">
             </div>
             <div class="col-md mt-3">
                 <label for="exampleFormControlFile1">Imagem do aparelho</label>
-                <input type="file" class="form-control p-1" id="exampleFormControlFile1" multiple>
+                <input type="file" class="form-control p-1" id="exampleFormControlFile1" name="imagem" multiple>
             </div>
         </div>
         <div class="form-group mb-3">

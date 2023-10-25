@@ -1,3 +1,27 @@
+<?php
+session_start();
+include('../Back-End/conexao.php');
+
+// Verifique se o usuário está logado
+if (isset($_SESSION['usuario'])) {
+    $usuario = $_SESSION['usuario'];
+    // Realize uma consulta para verificar se o usuário ainda existe no banco de dados
+    $consulta = "SELECT * FROM tbUsuario WHERE pkCodUsu = '$usuario'";
+    $resultado = $conexao->query($consulta);
+    
+    if (!$resultado || $resultado->num_rows === 0) {
+        // Usuário não encontrado no banco de dados, destrua a sessão
+        session_destroy();
+        header("Location: ../Paginas/Login.html");
+        exit();
+    }
+} else {
+    // Se a sessão não existe, redirecione para a página de login
+    header("Location: ../Paginas/Login.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
