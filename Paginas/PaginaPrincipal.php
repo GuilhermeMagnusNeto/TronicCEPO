@@ -49,7 +49,7 @@ if (isset($_SESSION['usuario'])) {
 <!-- CABEÇALHO -->
 <div class="container mt-3 my-2">
     <header class="d-flex flex-wrap justify-content-center py-3 mb- border-bottom pt-0">
-        <a href="/Paginas/PaginaPrincipal.html"
+        <a href="../Paginas/PaginaPrincipal.php"
             class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
             <svg class="bi me-2" width="40" height="32">
                 <use xlink:href="" />
@@ -58,10 +58,10 @@ if (isset($_SESSION['usuario'])) {
         </a>
 
         <ul class="nav nav-pills mx-auto">
-            <li class="nav-item"><a href="/Paginas/PaginaPrincipal.html" class="nav-link active"
+            <li class="nav-item"><a href="/Paginas/PaginaPrincipal.php" class="nav-link active"
                     aria-current="page">Principal</a></li>
-            <li class="nav-item"><a href="/Paginas/ListaDeProdutos.html" class="nav-link">Produtos</a></li>
-            <li class="nav-item"><a href="/Paginas/CadastroDeProdutos.html" class="nav-link">Cadastro</a></li>
+            <li class="nav-item"><a href="/Paginas/ListaDeProdutos.php" class="nav-link">Produtos</a></li>
+            <li class="nav-item"><a href="/Paginas/CadastroDeProdutos.php" class="nav-link">Cadastro</a></li>
         </ul>
         <div class="dropdown text-end my-auto mx-auto">
             <a href="" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
@@ -69,8 +69,8 @@ if (isset($_SESSION['usuario'])) {
                 <img src="../Imagens/DIGITAL.png" alt="icone de uma digital" width="32" height="32" class="rounded-circle">
             </a>
             <ul class="dropdown-menu text-small">
-                <li><a class="dropdown-item" href="../Paginas/Funcionarios.html">Funcionários</a></li>
-                <li><a class="dropdown-item" href="../Paginas/PDF.html">PDF</a></li>
+                <li><a class="dropdown-item" href="../Paginas/Funcionarios.php">Funcionários</a></li>
+                <li><a class="dropdown-item" href="../Paginas/PDF.php">PDF</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
@@ -88,7 +88,7 @@ if (isset($_SESSION['usuario'])) {
             <div class="row justify-content-center">
                 <!-- Cadastrar Produtos -->
                 <div class="card mb-4 mx-2" style="width: 350px;">
-                    <a href="../Paginas/CadastroDeProdutos.html" class="col-md-4 text-decoration-none"
+                    <a href="../Paginas/CadastroDeProdutos.php" class="col-md-4 text-decoration-none"
                         style="width: 100%; color: black;">
                         <img class="card-img-top p-3" alt="" style="height: 225px; width: 100%; display: block;"
                             src="../Imagens/add-button_318-757605.avif" data-holder-rendered="true">

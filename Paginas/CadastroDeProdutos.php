@@ -42,23 +42,23 @@ if (isset($_SESSION['usuario'])) {
 <!-- CABEÇALHO -->
 <div class="container mt-3 my-2">
     <header class="d-flex flex-wrap justify-content-center py-3 mb- border-bottom pt-0">
-        <a href="/Paginas/PaginaPrincipal.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <a href="../Paginas/PaginaPrincipal.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
             <svg class="bi me-2" width="40" height="32"><use xlink:href=""/></svg>
             <img src="../Imagens/LogoTronic.png" alt="Logo da loja Tronic" id="LogoTronic" height="35">
         </a>
     
         <ul class="nav nav-pills mx-auto">
-            <li class="nav-item"><a href="/Paginas/PaginaPrincipal.html" class="nav-link" aria-current="page">Principal</a></li>
-            <li class="nav-item"><a href="/Paginas/ListaDeProdutos.html" class="nav-link">Produtos</a></li>
-            <li class="nav-item"><a href="/Paginas/CadastroDeProdutos.html" class="nav-link active">Cadastro</a></li>
+            <li class="nav-item"><a href="../Paginas/PaginaPrincipal.php" class="nav-link" aria-current="page">Principal</a></li>
+            <li class="nav-item"><a href="../Paginas/ListaDeProdutos.php" class="nav-link">Produtos</a></li>
+            <li class="nav-item"><a href="../Paginas/CadastroDeProdutos.php" class="nav-link active">Cadastro</a></li>
         </ul>
         <div class="dropdown text-end my-auto mx-auto">
             <a href="" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="../Imagens/DIGITAL.png" alt="icone de uma digital" width="32" height="32" class="rounded-circle">
             </a>
             <ul class="dropdown-menu text-small">
-                <li><a class="dropdown-item" href="../Paginas/Funcionarios.html">Funcionários</a></li>
-                <li><a class="dropdown-item" href="../Paginas/PDF.html">PDF</a></li>
+                <li><a class="dropdown-item" href="../Paginas/Funcionarios.php">Funcionários</a></li>
+                <li><a class="dropdown-item" href="../Paginas/PDF.php">PDF</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="">Sign out</a></li>
             </ul>
@@ -69,7 +69,7 @@ if (isset($_SESSION['usuario'])) {
 <!-- CORPO -->
 <body class="mx-auto mt-0 px-0 pt-0">
     <img src="../Imagens/BannerHeader.jpeg" class="d-flex align-items-center mb-3 w-100">
-    <form class="mx-5" action="../Back-End/Produtos/inserirProduto.php" method="post">
+    <form class="mx-5" action="../Back-End/Produtos/inserirProduto.php" method="post" enctype="multipart/form-data">
         <div class="form-group mb-3">
             <label for="formGroupExampleInput">Marca</label>
             <select class="form-control" name="marca" required>
@@ -140,15 +140,15 @@ if (isset($_SESSION['usuario'])) {
             <input type="text" maxlength="200" class="form-control" id="formGroupExampleInput2" placeholder="Bateria trocada" name="observacao">
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" name="aquisicao" checked>
+            <input class="form-check-input" type="radio" name="aquisicao" id="inlineRadio1" value="1" checked>
             <label class="form-check-label" for="inlineRadio1">Compra</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" name="aquisicao">
+            <input class="form-check-input" type="radio" name="aquisicao" id="inlineRadio2" value="2">
             <label class="form-check-label" for="inlineRadio2">Troca</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" name="aquisicao">
+            <input class="form-check-input" type="radio" name="aquisicao" id="inlineRadio3" value="3">
             <label class="form-check-label" for="inlineRadio3">Novo</label>
         </div>
         <div class="row mb-3"> 
@@ -158,12 +158,12 @@ if (isset($_SESSION['usuario'])) {
             </div>
             <div class="col-md mt-3">
                 <label for="exampleFormControlFile1">Imagem do aparelho</label>
-                <input type="file" class="form-control p-1" id="exampleFormControlFile1" name="imagem" multiple>
+                <input type="file" class="form-control p-1" id="exampleFormControlFile1" name="imagem[]" multiple>
             </div>
         </div>
         <div class="form-group mb-3">
             <label for="exampleFormControlFile1">Termo de Compra e Venda Preenchido</label>
-            <input type="file" class="form-control p-1" id="exampleFormControlFile1" multiple>
+            <input type="file" class="form-control p-1" id="exampleFormControlFile1" name="termo">
         </div>
         <div class="row mb-3 d-flex justify-content-evenly mx-auto">
             <button type="submit" class="btn btn-primary btn-sm col-md-2 py-3 mt-3">Cadastrar Celular</button>
