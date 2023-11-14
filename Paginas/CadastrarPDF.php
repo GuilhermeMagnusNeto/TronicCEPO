@@ -1,3 +1,27 @@
+<?php
+session_start();
+include('../Back-End/conexao.php');
+
+// Verifique se o usuário está logado
+if (isset($_SESSION['usuario'])) {
+    $usuario = $_SESSION['usuario'];
+    // Realize uma consulta para verificar se o usuário ainda existe no banco de dados
+    $consulta = "SELECT * FROM tbUsuario WHERE pkCodUsu = '$usuario'";
+    $resultado = $conexao->query($consulta);
+    
+    if (!$resultado || $resultado->num_rows === 0) {
+        // Usuário não encontrado no banco de dados, destrua a sessão
+        session_destroy();
+        header("Location: ../Paginas/Login.php");
+        exit();
+    }
+} else {
+    // Se a sessão não existe, redirecione para a página de login
+    header("Location: ../Paginas/Login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,23 +42,23 @@
 <!-- CABEÇALHO -->
 <div class="container mt-3 my-2">
     <header class="d-flex flex-wrap justify-content-center py-3 mb- border-bottom pt-0">
-        <a href="/Paginas/PaginaPrincipal.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <a href="/Paginas/PaginaPrincipal.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
             <svg class="bi me-2" width="40" height="32"><use xlink:href=""/></svg>
             <img src="../Imagens/LogoTronic.png" alt="Logo da loja Tronic" id="LogoTronic" height="35">
         </a>
     
         <ul class="nav nav-pills mx-auto">
-            <li class="nav-item"><a href="/Paginas/PaginaPrincipal.html" class="nav-link" aria-current="page">Principal</a></li>
-            <li class="nav-item"><a href="/Paginas/ListaDeProdutos.html" class="nav-link">Produtos</a></li>
-            <li class="nav-item"><a href="/Paginas/CadastroDeProdutos.html" class="nav-link">Cadastro</a></li>
+            <li class="nav-item"><a href="/Paginas/PaginaPrincipal.php" class="nav-link" aria-current="page">Principal</a></li>
+            <li class="nav-item"><a href="/Paginas/ListaDeProdutos.php" class="nav-link">Produtos</a></li>
+            <li class="nav-item"><a href="/Paginas/CadastroDeProdutos.php" class="nav-link">Cadastro</a></li>
         </ul>
         <div class="dropdown text-end my-auto mx-auto">
             <a href="" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="../Imagens/DIGITAL.png" alt="icone de uma digital" width="32" height="32" class="rounded-circle">
             </a>
             <ul class="dropdown-menu text-small">
-                <li><a class="dropdown-item" href="../Paginas/Funcionarios.html">Funcionários</a></li>
-                <li><a class="dropdown-item" href="../Paginas/PDF.html">PDF</a></li>
+                <li><a class="dropdown-item" href="../Paginas/Funcionarios.php">Funcionários</a></li>
+                <li><a class="dropdown-item" href="../Paginas/PDF.php">PDF</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="">Sign out</a></li>
             </ul>
@@ -44,7 +68,7 @@
 
 <!-- CORPO -->
 <body class="mx-0 mt-0 px-0 pt-0">
-    <form class="mx-5" action="../Back-End/Arquivos/inserir.php" method="post">
+    <form class="mx-5" action="../Back-End/Arquivos/inserirArquivos.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="formGroupExampleInput2">Nome do Arquivo</label>
             <input type="text" class="form-control" placeholder="Nome do Arquivo" name="nomeArquivo" required>
@@ -55,7 +79,7 @@
         </div>
         <div class="row mb-3 d-flex justify-content-evenly mx-auto">
             <button type="submit" class="btn btn-primary btn-sm col-md-2 py-3 mt-3">Cadastrar PDF</button>
-            <a href="../Paginas/PDF.html" class="btn btn-secondary btn-sm col-md-2 py-3 mt-3">Cancelar</a>
+            <a href="../Paginas/PDF.php" class="btn btn-secondary btn-sm col-md-2 py-3 mt-3">Cancelar</a>
         </div>
     </form>
 </body>
@@ -65,14 +89,14 @@
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top px-5">
         <p class="col-md-4 mb-0 text-body-secondary">© 2023 Tronic, Inc</p>
         
-        <a href="/Paginas/PaginaPrincipal.html" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <a href="/Paginas/PaginaPrincipal.php" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
             <img src="../Imagens/LogoTronic.png" class="bi mx-auto" width="100"></img>
         </a>
         
         <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item"><a href="/Paginas/PaginaPrincipal.html" class="nav-link px-2 text-body-secondary">Principal</a></li>
-            <li class="nav-item"><a href="/Paginas/ListaDeProdutos.html" class="nav-link px-2 text-body-secondary">Produtos</a></li>
-            <li class="nav-item"><a href="/Paginas/CadastroDeProdutos.html" class="nav-link px-2 text-body-secondary">Cadastro</a></li>
+            <li class="nav-item"><a href="/Paginas/PaginaPrincipal.php" class="nav-link px-2 text-body-secondary">Principal</a></li>
+            <li class="nav-item"><a href="/Paginas/ListaDeProdutos.php" class="nav-link px-2 text-body-secondary">Produtos</a></li>
+            <li class="nav-item"><a href="/Paginas/CadastroDeProdutos.php" class="nav-link px-2 text-body-secondary">Cadastro</a></li>
         </ul>
     </footer>
 </div>

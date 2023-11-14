@@ -1,6 +1,6 @@
 <?php
-// Conexão com o banco de dados
-$conexao = new mysqli("sql10.freesqldatabase.com", "sql10653561", "bibYa74ZeN", "sql10653561");
+// // Conexão com o banco de dados
+include('../conexao.php');
 
 // Verifica a conexão
 if ($conexao->connect_error) {
@@ -9,10 +9,17 @@ if ($conexao->connect_error) {
 
 // Dados do novo arquivo
 $nomeArquivo = $_POST['nomeArquivo'];  // Nome do Arquivo
-// Caminho para a imagem
-$caminho_da_imagem = $_POST['uploadArquivo'];
+
+// Verifica se o arquivo foi enviado com sucesso
+if ($_FILES['uploadArquivo']['error'] !== UPLOAD_ERR_OK) {
+    die("Erro no upload do arquivo: " . $_FILES['uploadArquivo']['error']);
+}
+
+// Caminho temporário do arquivo no servidor
+$caminho_temporario = $_FILES['uploadArquivo']['tmp_name'];
+
 // Lê o conteúdo da imagem em uma variável
-$imagemArquivo = file_get_contents($caminho_da_imagem);
+$imagemArquivo = file_get_contents($caminho_temporario);
 
 // Prepara e executa a consulta SQL usando prepared statements
 $consulta = $conexao->prepare("INSERT INTO tbArquivos (nomeArquivo, imagemArquivo) VALUES ( ?, ?)");

@@ -12,12 +12,12 @@ if (isset($_SESSION['usuario'])) {
     if (!$resultado || $resultado->num_rows === 0) {
         // Usuário não encontrado no banco de dados, destrua a sessão
         session_destroy();
-        header("Location: ../Paginas/Login.html");
+        header("Location: ../Paginas/Login.php");
         exit();
     }
 } else {
     // Se a sessão não existe, redirecione para a página de login
-    header("Location: ../Paginas/Login.html");
+    header("Location: ../Paginas/Login.php");
     exit();
 }
 ?>
@@ -58,7 +58,7 @@ if (isset($_SESSION['usuario'])) {
         </a>
 
         <ul class="nav nav-pills mx-auto">
-            <li class="nav-item"><a href="/Paginas/PaginaPrincipal.php" class="nav-link active"
+            <li class="nav-item"><a href="/Paginas/PaginaPrincipal.php" class="nav-link"
                     aria-current="page">Principal</a></li>
             <li class="nav-item"><a href="/Paginas/ListaDeProdutos.php" class="nav-link">Produtos</a></li>
             <li class="nav-item"><a href="/Paginas/CadastroDeProdutos.php" class="nav-link">Cadastro</a></li>
@@ -83,71 +83,85 @@ if (isset($_SESSION['usuario'])) {
 <!-- CORPO -->
 
 <body class="mx-0 mt-0 px-0 pt-0">
-    <div class="py-3">
-        <div class="mx-3">
-            <div class="row justify-content-center">
-                <!-- Cadastrar Produtos -->
-                <div class="card mb-4 mx-2" style="width: 350px;">
-                    <a href="../Paginas/CadastroDeProdutos.php" class="col-md-4 text-decoration-none"
-                        style="width: 100%; color: black;">
-                        <img class="card-img-top p-3" alt="" style="height: 225px; width: 100%; display: block;"
-                            src="../Imagens/add-button_318-757605.avif" data-holder-rendered="true">
-                        <div class="card-body">
-                            <h3 class="card-text d-flex justify-content-center">Cadastrar Produtos</h3>
+    <div class="mx-3 my-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="background-color: #0d6efd; color: white;">#</th>
+                    <th style="background-color: #0d6efd; color: white;">Arquivos</th>
+                    <th class="d-flex justify-content-center" style="background-color: #0d6efd; color: white;">Download
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="align-middle">
+                    <th>1</th>
+                    <td>Termo de Compra e Venda</td>
+                    <td>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div>
+                                <a href="!#" style="text-decoration: none;">
+                                    <button class="btn btn-primary" style="color: black;" type="button">
+                                        <i class="bi bi-download"></i>
+                                    </button>
+                                </a>
+                                <a href="!#" style="text-decoration: none;">
+                                    <button class="btn btn-danger" style="color: black;" type="button">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </a>
+                            </div>
                         </div>
-                    </a>
-                </div>
-                <!-- Produtos -->
-                <div class="card mb-4 mx-2" style="width: 350px;">
-                    <a href="../Paginas/ListaDeProdutos.php" class="col-md-4 text-decoration-none"
-                        style="width: 100%; color: black;">
-                        <img class="card-img-top p-3" alt="" style="height: 225px; width: 100%; display: block;"
-                            src="../Imagens/35432.png" data-holder-rendered="true">
-                        <div class="card-body">
-                            <h3 class="card-text d-flex justify-content-center">Produtos</h3>
+                    </td>
+                </tr>
+                <tr class="align-middle">
+                    <th>2</th>
+                    <td>Checklist Celulares</td>
+                    <td>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div>
+                                <a href="!#" style="text-decoration: none;">
+                                    <button class="btn btn-primary" style="color: black;" type="button">
+                                        <i class="bi bi-download"></i>
+                                    </button>
+                                </a>
+                                <a href="!#" style="text-decoration: none;">
+                                    <button class="btn btn-danger" style="color: black;" type="button">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </a>
+                            </div>
                         </div>
-                    </a>
-                </div>
-                <!-- PDFs -->
-                <div class="card mb-4 mx-2" style="width: 350px;">
-                    <a href="../Paginas/PDF.php" class="col-md-4 text-decoration-none"
-                        style="width: 100%; color: black;">
-                        <img class="card-img-top p-3" alt="" style="height: 225px; width: 100%; display: block;"
-                            src="../Imagens/2041111-200.png" data-holder-rendered="true">
-                        <div class="card-body">
-                            <h3 class="card-text d-flex justify-content-center">PDFs</h3>
+                    </td>
+                </tr>
+                <tr class="align-middle">
+                    <th>3</th>
+                    <td>Checklist Computadores</td>
+                    <td>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div>
+                                <a href="!#" style="text-decoration: none;">
+                                    <button class="btn btn-primary" style="color: black;" type="button">
+                                        <i class="bi bi-download"></i>
+                                    </button>
+                                </a>
+                                <a href="!#" style="text-decoration: none;">
+                                    <button class="btn btn-danger" style="color: black;" type="button">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </a>
+                            </div>
                         </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- Cadastrar Funcionario -->
-        <div class="mx-3">
-            <div class="row justify-content-center">
-                <div class="card mb-4 mx-2" style="width: 350px;">
-                    <a href="../Paginas/CadastroDeUsuarios.php" class="col-md-4 text-decoration-none"
-                        style="width: 100%; color: black;">
-                        <img class="card-img-top p-3" alt="" style="height: 225px; width: 100%; display: block;"
-                            src="../Imagens/png-transparent-computer-icons-employee-icon-cdr-desktop-wallpaper-add.png"
-                            data-holder-rendered="true">
-                        <div class="card-body">
-                            <h3 class="card-text d-flex justify-content-center">Cadastrar Funcionário</h3>
-                        </div>
-                    </a>
-                </div>
-                <!-- Funcionarios -->
-                <div class="card mb-4 mx-2" style="width: 350px;">
-                    <a href="../Paginas/Funcionarios.php" class="col-md-4 text-decoration-none"
-                        style="width: 100%; color: black;">
-                        <img class="card-img-top p-3" alt="" style="height: 225px; width: 100%; display: block;"
-                            src="../Imagens/png-clipart-computer-icons-scalable-graphics-employee-icon-text-area-removebg-preview.png"
-                            data-holder-rendered="true">
-                        <div class="card-body">
-                            <h3 class="card-text d-flex justify-content-center">Funcionários</h3>
-                        </div>
-                    </a>
-                </div>
-            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="justify-content-center">
+            <a href="../Paginas/CadastrarPDF.php" style="text-decoration: none;">
+                <button class="btn btn-secondary" type="button">
+                    <i class="bi bi-file-earmark-plus" style="color: white;"></i>
+                </button>
+            </a>
         </div>
     </div>
 </body>
