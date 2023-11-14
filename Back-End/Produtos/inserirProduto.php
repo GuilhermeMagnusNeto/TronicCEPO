@@ -11,11 +11,14 @@ if ($conexao->connect_error) {
 $marcaProd = $_POST['marca']; // Nome dos campos deve corresponder aos atributos 'name' do formulário
 $modeloProd = $_POST['modelo'];
 $corProd = $_POST['cor'];
-$armazenamentoProd = (int)$_POST['armazenamento']; // Converta para inteiro
+$armazenamentoProd = (int)$_POST['armazenamento'];
 $bateriaProd = (int)$_POST['bateria'];
 $imeiProd = $_POST['imei'];
 $memoriaRamProd = (int)$_POST['memoriaRam'];
-$valorCompraProd = (float)$_POST['valorCompra']; // Converta para ponto flutuante
+$nomeAntigoDono = $_POST['nomeAntigoDono'];
+$telefoneAntigoDono = $_POST['telefoneAntigoDono'];
+$cpfAntigoDono = $_POST['cpfAntigoDono'];
+$valorCompraProd = (float)$_POST['valorCompra'];
 $observacaoProd = $_POST['observacao'];
 $aquisicaoProd = $_POST['aquisicao'];
 $dataProd = $_POST['data'];
