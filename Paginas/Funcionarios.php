@@ -94,69 +94,47 @@ if (isset($_SESSION['usuario'])) {
                 </tr>
             </thead>
             <tbody>
-                <tr class="align-middle">
-                    <th>1</th>
-                    <td>Guilherme</td>
-                    <td>
-                        <div class="d-flex align-items-center justify-content-between">
-                            Técnico
-                            <div>
-                                <a href="!#" style="text-decoration: none;"></a>
-                                <button class="btn btn-primary" style="color: black;" type="button">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
-                                </a>
-                                <a href="!#" style="text-decoration: none;">
-                                    <button class="btn btn-danger" style="color: black;" type="button">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle">
-                    <th>2</th>
-                    <td>Leonardo</td>
-                    <td>
-                        <div class="d-flex align-items-center justify-content-between">
-                            Atendente
-                            <div>
-                                <a href="!#" style="text-decoration: none;"></a>
-                                <button class="btn btn-primary" style="color: black;" type="button">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
-                                </a>
-                                <a href="!#" style="text-decoration: none;">
-                                    <button class="btn btn-danger" style="color: black;" type="button">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle">
-                    <th>3</th>
-                    <td>Maykell</td>
-                    <td>
-                        <div class="d-flex align-items-center justify-content-between">
-                            Gerente
-                            <div>
-                                <a href="!#" style="text-decoration: none;"></a>
-                                <button class="btn btn-primary" style="color: black;" type="button">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
-                                </a>
-                                <a href="!#" style="text-decoration: none;">
-                                    <button class="btn btn-danger" style="color: black;" type="button">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
+                <?php
+                    // Consulta SQL para obter todos os usuarios
+                    $consultaUsuarios = "SELECT * FROM tbUsuario";
+                    $consultaUsuarios = $conexao->query($consultaUsuarios);
+
+                    // Verifica se a consulta foi executada com sucesso
+                    if ($consultaUsuarios) {
+                        $contador = 1;
+                        // Loop para exibir os resultados
+                        while ($linha = $consultaUsuarios->fetch_assoc()) {
+                            echo "<tr class='align-middle' id = '" . $linha["pkCodUsu"] . " '>";
+                                echo "<th>" . $contador . "</th>";
+                                echo "<td>" . $linha["nomeUsu"] . "</td>";
+                                echo "<td>";
+                                    echo "<div class='d-flex align-items-center justify-content-between'>";
+                                        echo "Técnico"; // ADICIONAR CARGO
+                                        echo "<div>";
+                                            echo "<a href='!#' style='text-decoration: none;'></a>";
+                                                echo "<button class='btn btn-primary me-1' style='color: black;' type='button'>";
+                                                    echo "<i class='bi bi-pencil'></i>";
+                                                echo "</button>";
+                                            echo "</a>";
+                                            echo "<a href='!#' style='text-decoration: none;'>";
+                                                echo "<button class='btn btn-danger' style='color: black;' type='button'>";
+                                                    echo "<i class='bi bi-trash'></i>";
+                                                echo "</button>";
+                                            echo "</a>";
+                                        echo "</div>";
+                                    echo "</div>";
+                                echo "</td>";
+                            echo "</tr>";
+                            $contador++;
+                        }
+                        // Rodapé do HTML
+                    } else {
+                        echo "Erro na consulta: " . $conexao->error;
+                    }
+
+                    // Fecha a conexão após o uso
+                    $conexao->close();
+                ?>
             </tbody>
         </table>
         <div class="justify-content-center">

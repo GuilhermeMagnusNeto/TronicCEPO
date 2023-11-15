@@ -68,7 +68,6 @@ if (isset($_SESSION['usuario'])) {
 
 <!-- CORPO -->
 <body class="mx-0 mt-0 px-0 pt-0">
-
     <?php
         // Consulta SQL para obter todos os produtos
         $consultaProdutos = "SELECT * FROM tbProdutos";
@@ -79,22 +78,25 @@ if (isset($_SESSION['usuario'])) {
         $resultadoImagens = $conexao->query($consultaProdutos);
 
         // Verifica se a consulta foi executada com sucesso
-        if ($resultadoProdutos) {            
+        if ($resultadoProdutos) {
+            $contador = 0;
             // Loop para exibir os resultados
-            echo "<div class='container px-0 mb-2 d-flex row mx-auto mt-0'>";
             while ($linha = $resultadoProdutos->fetch_assoc()) {
+                if($contador == 0 || $contador%3 == 0) {
+                    echo "<div class='container px-0 mb-2 d-flex row mx-auto mt-0'>";
+                }
                 $consultaImagens = "SELECT * FROM tbImagemProduto WHERE fkCodProd = " . $linha["pkCodProd"];
                 $resultadoImagens = $conexao->query($consultaImagens);
 
 
                 // Exibir informações do produto
-                echo "<a href='!#' class='text-decoration-none border col-md' style='color: black;'>";
+                echo "<a href='!#' class='text-decoration-none border col-md' style='color: black;' id=" . $linha["pkCodProd"] . ">";
                 echo "<div class='d-flex justify-content-center'>";
                 // Exibir a imagem do produto
                 while ($imagem = $resultadoImagens->fetch_assoc()) {
-                    echo "<img src='data:image/png;base64," . base64_encode($imagem["imagem"]) . "' width='100px' class='my-2'>";
+                    echo "<img src='data:image/png;base64," . base64_encode($imagem["imagem"]) . "' width='150px' class='my-2'>";
+                    break;
                 }
-                echo "<img src='data:image/png;base64," . base64_encode($linha["CompraVendaProd"]) . "' width='150px' class='my-2'>";
                 echo "</div>";
                 echo "<div>";
                 // Exibir outras informações do produto
@@ -102,12 +104,17 @@ if (isset($_SESSION['usuario'])) {
                 echo "<p>Cor: " . $linha["corProd"] . "<br>Armazenamento: " . $linha["armazenamentoProd"] . "<br>Bateria: " . $linha["bateriaProd"] . "</p>";
                 echo "</div>";
                 echo "</a>";
+                $contador++;
+                if($contador%3 == 0) {
+                    echo "</div>";
+                }
+                
             }
-            echo "</div>";
+            
+            
 
 
             // Rodapé do HTML
-            include('rodape.php'); // Substitua 'rodape.php' pelo nome correto do seu arquivo de rodapé
         } else {
             echo "Erro na consulta: " . $conexao->error;
         }
@@ -115,70 +122,6 @@ if (isset($_SESSION['usuario'])) {
         // Fecha a conexão após o uso
         $conexao->close();
     ?>
-
-
-
-
-    <!-- IMAGEM NO MEIO -->
-    <div class="container px-0 mb-2 d-flex row mx-auto mt-0">
-        <a href="!#" class="text-decoration-none border col-md" style="color: black;">
-            <div class="d-flex justify-content-center">
-                <img src="../Imagens/compare_iphone11_black__co2xponse6xe_large_2x.jpg" width="150px" class="my-2">
-            </div>
-            <div class="">
-                <h1>iPhone 11</h1>
-                <p>Cor: Preto<br>Armazenamento: 128Gb<br>Bateria: 100%</p>
-            </div>
-        </a>
-        <a href="!#" class="border col-md text-decoration-none" style="color: black;">
-            <div class="d-flex justify-content-center">
-                <img src="../Imagens/compare_iphone14_pro_max_deep_purple__diuabahv3w4m_large_2x.jpg" width="150px" class="my-2">
-            </div>            
-            <div class="">
-                <h1>iPhone 14 Pro Max</h1>
-                <p>Cor: Preto<br>Armazenamento: 128Gb<br>Bateria: 100%</p>
-            </div>
-        </a>
-        <a href="!#" class="border col-md text-decoration-none" style="color: black;">
-            <div class="d-flex justify-content-center">
-                <img src="../Imagens/compare_iphone11_black__co2xponse6xe_large_2x.jpg" width="150px" class="my-2">
-            </div>
-            <div class="">
-                <h1>iPhone 11</h1>
-                <p>Cor: Preto<br>Armazenamento: 128Gb<br>Bateria: 100%</p>
-            </div>
-        </a>
-    </div>
-
-    <div class="container px-0 mb-2 d-flex row mx-auto mt-0">
-        <a href="!#" class="text-decoration-none border col-md" style="color: black;">
-            <div class="d-flex justify-content-center">
-                <img src="../Imagens/compare_iphone11_black__co2xponse6xe_large_2x.jpg" width="150px" class="my-2">
-            </div>
-            <div class="">
-                <h1>iPhone 11</h1>
-                <p>Cor: Preto<br>Armazenamento: 128Gb<br>Bateria: 100%</p>
-            </div>
-        </a>
-        <a href="!#" class="border col-md text-decoration-none" style="color: black;">
-            <div class="d-flex justify-content-center">
-                <img src="../Imagens/compare_iphone14_pro_max_deep_purple__diuabahv3w4m_large_2x.jpg" width="150px" class="my-2">
-            </div>            
-            <div class="">
-                <h1>iPhone 14 Pro Max</h1>
-                <p>Cor: Preto<br>Armazenamento: 128Gb<br>Bateria: 100%</p>
-            </div>
-        </a>
-        <a href="!#" class="border col-md text-decoration-none" style="color: black;">
-            <div class="d-flex justify-content-center">
-                <img src="../Imagens/compare_iphone11_black__co2xponse6xe_large_2x.jpg" width="150px" class="my-2">
-            </div>
-            <div class="">
-                <h1>iPhone 11</h1>
-                <p>Cor: Preto<br>Armazenamento: 128Gb<br>Bateria: 100%</p>
-            </div>
-        </a>
-    </div>
 </body>
 
 <!-- RODAPE -->

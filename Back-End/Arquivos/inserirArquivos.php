@@ -27,6 +27,7 @@ $consulta->bind_param("ss", $nomeArquivo, $imagemArquivo);
 
 if ($consulta->execute()) {
     echo "Arquivo cadastrado com sucesso!!!";
+    header("Location: ../../Paginas/PDF.php");
 } else {
     echo "Erro na consulta: " . $consulta->error;
 }

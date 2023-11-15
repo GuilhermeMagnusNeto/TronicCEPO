@@ -89,71 +89,50 @@ if (isset($_SESSION['usuario'])) {
                 <tr>
                     <th style="background-color: #0d6efd; color: white;">#</th>
                     <th style="background-color: #0d6efd; color: white;">Arquivos</th>
-                    <th class="d-flex justify-content-center" style="background-color: #0d6efd; color: white;">Download
-                    </th>
+                    <th class="d-flex justify-content-center" style="background-color: #0d6efd; color: white; border-bottom: 0px;">Download</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="align-middle">
-                    <th>1</th>
-                    <td>Termo de Compra e Venda</td>
-                    <td>
-                        <div class="d-flex align-items-center justify-content-center">
-                            <div>
-                                <a href="!#" style="text-decoration: none;">
-                                    <button class="btn btn-primary" style="color: black;" type="button">
-                                        <i class="bi bi-download"></i>
-                                    </button>
-                                </a>
-                                <a href="!#" style="text-decoration: none;">
-                                    <button class="btn btn-danger" style="color: black;" type="button">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle">
-                    <th>2</th>
-                    <td>Checklist Celulares</td>
-                    <td>
-                        <div class="d-flex align-items-center justify-content-center">
-                            <div>
-                                <a href="!#" style="text-decoration: none;">
-                                    <button class="btn btn-primary" style="color: black;" type="button">
-                                        <i class="bi bi-download"></i>
-                                    </button>
-                                </a>
-                                <a href="!#" style="text-decoration: none;">
-                                    <button class="btn btn-danger" style="color: black;" type="button">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="align-middle">
-                    <th>3</th>
-                    <td>Checklist Computadores</td>
-                    <td>
-                        <div class="d-flex align-items-center justify-content-center">
-                            <div>
-                                <a href="!#" style="text-decoration: none;">
-                                    <button class="btn btn-primary" style="color: black;" type="button">
-                                        <i class="bi bi-download"></i>
-                                    </button>
-                                </a>
-                                <a href="!#" style="text-decoration: none;">
-                                    <button class="btn btn-danger" style="color: black;" type="button">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
+                <?php
+                    // Consulta SQL para obter todos os usuarios
+                    $consultaArquivos = "SELECT * FROM tbArquivos";
+                    $consultaArquivos = $conexao->query($consultaArquivos);
+
+                    // Verifica se a consulta foi executada com sucesso
+                    if ($consultaArquivos) {
+                        $contador = 1;
+                        // Loop para exibir os resultados
+                        while ($linha = $consultaArquivos->fetch_assoc()) {
+                            echo "<tr class='align-middle' id = '" . $linha["pkCodArquivos"] . "'>";
+                                echo "<th>" . $contador . "</th>";
+                                echo "<td>" . $linha["nomeArquivo"] . "</td>";
+                                echo "<td>";
+                                    echo "<div class='d-flex align-items-center justify-content-center'>";
+                                        echo "<div>";
+                                            echo "<a href='!#' style='text-decoration: none;'></a>";
+                                                echo "<button class='btn btn-primary me-1' style='color: black;' type='button'>";
+                                                    echo "<i class='bi bi-download'></i>";
+                                                echo "</button>";
+                                            echo "</a>";
+                                            echo "<a href='!#' style='text-decoration: none;'>";
+                                                echo "<button class='btn btn-danger' style='color: black;' type='button'>";
+                                                    echo "<i class='bi bi-trash'></i>";
+                                                echo "</button>";
+                                            echo "</a>";
+                                        echo "</div>";
+                                    echo "</div>";
+                                echo "</td>";
+                            echo "</tr>";
+                            $contador++;
+                        }
+                        // Rodapé do HTML
+                    } else {
+                        echo "Erro na consulta: " . $conexao->error;
+                    }
+
+                    // Fecha a conexão após o uso
+                    $conexao->close();
+                ?>
             </tbody>
         </table>
         <div class="justify-content-center">
