@@ -69,6 +69,56 @@ if (isset($_SESSION['usuario'])) {
 <!-- CORPO -->
 <body class="mx-0 mt-0 px-0 pt-0">
 
+    <?php
+        // Consulta SQL para obter todos os produtos
+        $consultaProdutos = "SELECT * FROM tbProdutos";
+        $resultadoProdutos = $conexao->query($consultaProdutos);
+
+
+        $consultaImagens = "SELECT * FROM tbImagemProduto where fkCodProd = ";
+        $resultadoImagens = $conexao->query($consultaProdutos);
+
+        // Verifica se a consulta foi executada com sucesso
+        if ($resultadoProdutos) {            
+            // Loop para exibir os resultados
+            echo "<div class='container px-0 mb-2 d-flex row mx-auto mt-0'>";
+            while ($linha = $resultadoProdutos->fetch_assoc()) {
+                $consultaImagens = "SELECT * FROM tbImagemProduto WHERE fkCodProd = " . $linha["pkCodProd"];
+                $resultadoImagens = $conexao->query($consultaImagens);
+
+
+                // Exibir informações do produto
+                echo "<a href='!#' class='text-decoration-none border col-md' style='color: black;'>";
+                echo "<div class='d-flex justify-content-center'>";
+                // Exibir a imagem do produto
+                while ($imagem = $resultadoImagens->fetch_assoc()) {
+                    echo "<img src='data:image/png;base64," . base64_encode($imagem["imagem"]) . "' width='100px' class='my-2'>";
+                }
+                echo "<img src='data:image/png;base64," . base64_encode($linha["CompraVendaProd"]) . "' width='150px' class='my-2'>";
+                echo "</div>";
+                echo "<div>";
+                // Exibir outras informações do produto
+                echo "<h1>" . $linha["modeloProd"] . "</h1>";
+                echo "<p>Cor: " . $linha["corProd"] . "<br>Armazenamento: " . $linha["armazenamentoProd"] . "<br>Bateria: " . $linha["bateriaProd"] . "</p>";
+                echo "</div>";
+                echo "</a>";
+            }
+            echo "</div>";
+
+
+            // Rodapé do HTML
+            include('rodape.php'); // Substitua 'rodape.php' pelo nome correto do seu arquivo de rodapé
+        } else {
+            echo "Erro na consulta: " . $conexao->error;
+        }
+
+        // Fecha a conexão após o uso
+        $conexao->close();
+    ?>
+
+
+
+
     <!-- IMAGEM NO MEIO -->
     <div class="container px-0 mb-2 d-flex row mx-auto mt-0">
         <a href="!#" class="text-decoration-none border col-md" style="color: black;">
