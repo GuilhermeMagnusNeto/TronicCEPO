@@ -114,7 +114,7 @@ if (isset($_SESSION['usuario'])) {
                                                     echo "<i class='bi bi-download'></i>";
                                                 echo "</button>";
                                             echo "</a>";
-                                            echo "<a href='!#' style='text-decoration: none;'>";
+                                            echo "<a href='../Back-End/Arquivos/deletarArquivo.php?pkCodArquivos=" . $linha["pkCodArquivos"] . "' style='text-decoration: none;'>";
                                                 echo "<button class='btn btn-danger' style='color: black;' type='button'>";
                                                     echo "<i class='bi bi-trash'></i>";
                                                 echo "</button>";
