@@ -90,7 +90,7 @@ if (isset($_SESSION['usuario'])) {
 
 
                 // Exibir informações do produto
-                echo "<a href='!#' class='text-decoration-none border col-md' style='color: black;' id=" . $linha["pkCodProd"] . ">";
+                echo "<a href='EditarProduto.php?pkCodProd=" . $linha["pkCodProd"] . "'' class='text-decoration-none border col-md' style='color: black;' id=" . $linha["pkCodProd"] . ">";
                 echo "<div class='d-flex justify-content-center'>";
                 // Exibir a imagem do produto
                 while ($imagem = $resultadoImagens->fetch_assoc()) {

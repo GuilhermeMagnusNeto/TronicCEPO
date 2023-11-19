@@ -7,17 +7,17 @@ if ($conexao->connect_error) {
     die("Conexão falhou: " . $conexao->connect_error);
 }
 
-// Deletar arquivo usando o parâmetro na URL
-if (isset($_GET['pkCodUsu'])) {
-    $pkCodUsu = $_GET['pkCodUsu'];
+if (isset($_GET['pkCodProd'])) {
+    $pkCodProd = $_GET['pkCodProd'];
 
-    // Prepara e executa a consulta SQL para excluir o usuário usando prepared statement
-    $consulta = "DELETE FROM tbUsuario WHERE pkCodUsu = ?";
+    // Prepara e executa a consulta SQL para excluir o produto usando prepared statement
+    $consulta = "DELETE FROM tbProdutos WHERE pkCodProd = ?";
     $stmt = $conexao->prepare($consulta);
-    $stmt->bind_param("i", $pkCodUsu);
+    $stmt->bind_param("i", $pkCodProd);
 
     if ($stmt->execute()) {
-        header("Location: ../../Paginas/Funcionarios.php");
+        echo "Registro excluído com sucesso.";
+        header("Location: ../../Paginas/ListaDeProdutos.php");
     } else {
         echo "Erro na exclusão: " . $stmt->error;
     }
@@ -25,7 +25,7 @@ if (isset($_GET['pkCodUsu'])) {
     // Fecha o statement e a conexão após o uso
     $stmt->close();
     $conexao->close();
-}
+} 
 else {
     echo "Erro na exclusão!";
 }
