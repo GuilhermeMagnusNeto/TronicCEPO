@@ -12,6 +12,7 @@ $nomeUsu = $_POST['nome'];  // Nome
 $senhaUsu = $_POST['senha']; // Senha (deve ser tratada com hash)
 $confirmarSenha = $_POST['confirmarSenha'];
 $nivelAcessoUsu = $_POST['acesso']; // Nível de acesso
+$cargoUsu = $_POST['cargo']; //Cargo
 
 if($nivelAcessoUsu == "simples"){
     $nivelAcessoUsu = 1;
@@ -22,7 +23,6 @@ elseif ($nivelAcessoUsu == "medio"){
 elseif ($nivelAcessoUsu == "completo"){
     $nivelAcessoUsu = 3;
 }
-echo $nivelAcessoUsu;
 
 if($senhaUsu != $confirmarSenha){
     echo'SENHAS DIFERENTES!';
@@ -32,8 +32,8 @@ else{
     $senhaHash = password_hash($senhaUsu, PASSWORD_DEFAULT);
 
     // Prepara e executa a consulta SQL usando prepared statements
-    $consulta = $conexao->prepare("INSERT INTO tbUsuario(nomeUsu, senhaUsu, nivelAcessoUsu) VALUES(?, ?, ?)");
-    $consulta->bind_param("ssi", $nomeUsu, $senhaHash, $nivelAcessoUsu);
+    $consulta = $conexao->prepare("INSERT INTO tbUsuario(nomeUsu, senhaUsu, nivelAcessoUsu, cargoUsu) VALUES(?, ?, ?, ?)");
+    $consulta->bind_param("ssis", $nomeUsu, $senhaHash, $nivelAcessoUsu, $cargoUsu);
 
     if ($consulta->execute()) {
         echo "Usuário cadastrado com sucesso!!!";

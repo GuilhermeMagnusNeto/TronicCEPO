@@ -109,9 +109,9 @@ if (isset($_SESSION['usuario'])) {
                                 echo "<td>" . $linha["nomeUsu"] . "</td>";
                                 echo "<td>";
                                     echo "<div class='d-flex align-items-center justify-content-between'>";
-                                        echo "Técnico"; // ADICIONAR CARGO
+                                        echo $linha["cargoUsu"]; // ADICIONAR CARGO
                                         echo "<div>";
-                                            echo "<a href='!#' style='text-decoration: none;'></a>";
+                                            echo "<a href='../Paginas/EditarFuncionario.php?pkCodUsu=" . $linha["pkCodUsu"] . "' style='text-decoration: none;'>";
                                                 echo "<button class='btn btn-primary me-1' style='color: black;' type='button'>";
                                                     echo "<i class='bi bi-pencil'></i>";
                                                 echo "</button>";

@@ -49,7 +49,7 @@ if (isset($_SESSION['usuario'])) {
 <!-- CABEÇALHO -->
 <div class="container mt-3 my-2">
     <header class="d-flex flex-wrap justify-content-center py-3 mb- border-bottom pt-0">
-        <a href="/Paginas/PaginaPrincipal.html"
+        <a href="/Paginas/PaginaPrincipal.php"
             class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
             <svg class="bi me-2" width="40" height="32">
                 <use xlink:href="" />
@@ -58,10 +58,10 @@ if (isset($_SESSION['usuario'])) {
         </a>
 
         <ul class="nav nav-pills mx-auto mb-">
-            <li class="nav-item"><a href="/Paginas/PaginaPrincipal.html" class="nav-link"
+            <li class="nav-item"><a href="/Paginas/PaginaPrincipal.php" class="nav-link"
                     aria-current="page">Principal</a></li>
-            <li class="nav-item"><a href="/Paginas/ListaDeProdutos.html" class="nav-link">Produtos</a></li>
-            <li class="nav-item"><a href="/Paginas/CadastroDeProdutos.html" class="nav-link">Cadastro</a></li>
+            <li class="nav-item"><a href="/Paginas/ListaDeProdutos.php" class="nav-link">Produtos</a></li>
+            <li class="nav-item"><a href="/Paginas/CadastroDeProdutos.php" class="nav-link">Cadastro</a></li>
         </ul>
         <div class="dropdown text-end my-auto mx-auto">
             <a href="" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
@@ -70,8 +70,8 @@ if (isset($_SESSION['usuario'])) {
                     class="rounded-circle">
             </a>
             <ul class="dropdown-menu text-small">
-                <li><a class="dropdown-item" href="../Paginas/Funcionarios.html">Funcionários</a></li>
-                <li><a class="dropdown-item" href="../Paginas/PDF.html">PDF</a></li>
+                <li><a class="dropdown-item" href="../Paginas/Funcionarios.php">Funcionários</a></li>
+                <li><a class="dropdown-item" href="../Paginas/PDF.php">PDF</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
@@ -84,11 +84,14 @@ if (isset($_SESSION['usuario'])) {
 <!-- CORPO -->
 
 <body class="mx-auto mt-0 px-0 pt-0">
-    <img src="../Imagens/BannerHeader.jpeg" class="d-flex align-items-center mb-3 w-100">
     <form class="mx-4" action="../Back-End/Usuario/inserirFuncionario.php" method="post">
         <div class="form-group mb-3">
             <label for="exampleInputEmail1">Nome</label>
-            <input type="text" name="nome" class="form-control" aria-describedby="emailHelp" placeholder="Nome do Funcionário">
+            <input type="text" name="nome" class="form-control" placeholder="Nome do Funcionário">
+        </div>
+        <div class="form-group mb-3">
+            <label for="Cargo">Cargo</label>
+            <input type="text" name="cargo" class="form-control" placeholder="Cargo do Funcionário">
         </div>
         <div class="form-group mb-3">
             <label for="exampleInputPassword1">Senha</label>
@@ -122,17 +125,17 @@ if (isset($_SESSION['usuario'])) {
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top px-5">
         <p class="col-md-4 mb-0 text-body-secondary">© 2023 Tronic, Inc</p>
 
-        <a href="/Paginas/PaginaPrincipal.html"
+        <a href="/Paginas/PaginaPrincipal.php"
             class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
             <img src="../Imagens/LogoTronic.png" class="bi mx-auto" width="100"></img>
         </a>
 
         <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item"><a href="/Paginas/PaginaPrincipal.html"
+            <li class="nav-item"><a href="/Paginas/PaginaPrincipal.php"
                     class="nav-link px-2 text-body-secondary">Principal</a></li>
-            <li class="nav-item"><a href="/Paginas/ListaDeProdutos.html"
+            <li class="nav-item"><a href="/Paginas/ListaDeProdutos.php"
                     class="nav-link px-2 text-body-secondary">Produtos</a></li>
-            <li class="nav-item"><a href="/Paginas/CadastroDeProdutos.html"
+            <li class="nav-item"><a href="/Paginas/CadastroDeProdutos.php"
                     class="nav-link px-2 text-body-secondary">Cadastro</a></li>
         </ul>
     </footer>

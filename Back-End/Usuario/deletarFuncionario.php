@@ -17,7 +17,7 @@ if (isset($_GET['pkCodUsu'])) {
     $stmt->bind_param("i", $pkCodUsu);
 
     if ($stmt->execute()) {
-        echo "Registro excluído com sucesso.";
+        header("Location: ../../Paginas/Funcionarios.php");
     } else {
         echo "Erro na exclusão: " . $stmt->error;
     }
