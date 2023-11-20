@@ -12,12 +12,12 @@ if (isset($_SESSION['usuario'])) {
     if (!$resultado || $resultado->num_rows === 0) {
         // Usuário não encontrado no banco de dados, destrua a sessão
         session_destroy();
-        header("Location: ../Paginas/Login.php");
+        header("Location: ../Paginas/Login.html");
         exit();
     }
 } else {
     // Se a sessão não existe, redirecione para a página de login
-    header("Location: ../Paginas/Login.php");
+    header("Location: ../Paginas/Login.html");
     exit();
 }
 ?>
