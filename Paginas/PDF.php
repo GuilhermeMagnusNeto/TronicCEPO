@@ -109,7 +109,7 @@ if (isset($_SESSION['usuario'])) {
                                 echo "<td>";
                                     echo "<div class='d-flex align-items-center justify-content-center'>";
                                         echo "<div>";
-                                            echo "<a href='!#' style='text-decoration: none;'></a>";
+                                            echo "<a href='../Back-End/Arquivos/baixarArquivo.php?pkCodArquivos=" . $linha["pkCodArquivos"] . "' style='text-decoration: none;'>";
                                                 echo "<button class='btn btn-primary me-1' style='color: black;' type='button'>";
                                                     echo "<i class='bi bi-download'></i>";
                                                 echo "</button>";
