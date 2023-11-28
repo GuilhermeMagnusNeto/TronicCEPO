@@ -50,7 +50,7 @@ if (isset($_SESSION['usuario'])) {
         <ul class="nav nav-pills mx-auto">
             <li class="nav-item"><a href="/Paginas/PaginaPrincipal.php" class="nav-link" aria-current="page">Principal</a></li>
             <li class="nav-item"><a href="/Paginas/ListaDeProdutos.php" class="nav-link">Produtos</a></li>
-            <li class="nav-item"><a href="/Paginas/CadastroDeProdutos.php" class="nav-link active">Cadastro</a></li>
+            <li class="nav-item"><a href="/Paginas/CadastroDeProdutos.php" class="nav-link">Cadastro</a></li>
         </ul>
         <div class="dropdown text-end my-auto mx-auto">
             <a href="" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -181,12 +181,17 @@ if (isset($_SESSION['usuario'])) {
                             }
                             echo "</select>";
                         echo "</div>";
-                    echo "</div>";
-                    echo "<div class='row mb-3'>";
                         //LISTAR BATERIA
                         echo "<div class='form-group col-md mt-3'>";
                             echo "<label for='formGroupExampleInput2'>Procentagem da Bateria</label>";
                             echo "<input type='number' min='0' max='100' class='form-control' id='formGroupExampleInput2' placeholder='100' name='bateria' value = '". $linha["bateriaProd"] ."'>";
+                        echo "</div>";
+                    echo "</div>";
+                    echo "<div class='row mb-3'>";
+                        //LISTAR IMEI
+                        echo "<div class='form-group col-md mt-3'>";
+                            echo "<label for='formGroupExampleInput2'>IMEI</label>";
+                            echo "<input type='text' class='form-control' id='formGroupExampleInput2' placeholder='xxxxxxxxxxxxxxx' name='imei' value = '". $linha["imeiProd"] ."'>";
                         echo "</div>";
                         //LISTAR MEMORIA RAM
                         echo "<div class='form-group col-md mt-3'>";
@@ -199,6 +204,64 @@ if (isset($_SESSION['usuario'])) {
                         echo "<label for='formGroupExampleInput2'>Observação</label>";
                         echo "<input type='text' maxlength='200' class='form-control' id='formGroupExampleInput2' placeholder='Bateria trocada' name='observacao' value = '". $linha["observacaoProd"] ."'>";
                     echo "</div>";
+                    //LISTAR ANTIGO DONO
+                    // echo "<div class='form-group'>";
+                    //     echo "<label for='formGroupExampleInput'>Nome do Antigo Dono</label>";
+                    //     echo "<input type='text' class='form-control' id='formGroupExampleInput' placeholder='João da Silva Santos' name='nomeAntigoDono'  value = '". $linha["nomeAntigoDono"] ."'>";
+                    // echo "</div>";
+                    // echo "<div class='row mb-3'>";
+                    //     echo "<div class='form-group col-md mt-3'>";
+                    //         echo "<label for='formGroupExampleInput2'>Telefone do Antigo Dono</label>";
+                    //         echo "<input type='number' min='0' class='form-control' id='formGroupExampleInput2' placeholder='(xx)xxxxx-xxxx' name='telefoneAntigoDono'  value = '". $linha["telefoneAntigoDono"] ."'>";
+                    //     echo "</div>";
+                    //     echo "<div class='form-group col-md mt-3'>";
+                    //         echo "<label for='formGroupExampleInput2'>CPF do Antigo Dono</label>";
+                    //         echo "<input type='number' min='0' class='form-control' id='formGroupExampleInput2' placeholder='xxx.xxx.xxx-xx' name='cpfAntigoDono'  value = '". $linha["cpfAntigoDono"] ."'>";
+                    //     echo "</div>";
+                    // echo "</div>";
+
+                    //LISTAR VALOR DE COMPRA
+                    echo "<div class='form-group mb-3'>";
+                        echo "<label for='formGroupExampleInput2'>Valor de Compra</label>";
+                        echo "<input type='number' min='0' class='form-control' id='formGroupExampleInput2' placeholder='R$1000,00' name='valorCompra'  value = '". $linha["valorCompraProd"] ."'>";
+                    echo "</div>";
+                    //LISTAR FORMA DE AQUISIÇÃO
+                    if($linha["aquisicaoProd"] == 1){
+                        echo "<div class='form-check form-check-inline'>";
+                            echo "<input class='form-check-input' type='radio' name='aquisicao' id='inlineRadio1' value='option1' name='aquisicao' checked>";
+                            echo "<label class='form-check-label' for='inlineRadio1'>Compra</label>";
+                        echo "</div>";
+                    }
+                    elseif($linha["aquisicaoProd"] == 2){
+                        echo "<div class='form-check form-check-inline'>";
+                            echo "<input class='form-check-input' type='radio' name='aquisicao' id='inlineRadio1' value='option1' name='aquisicao' checked>";
+                            echo "<label class='form-check-label' for='inlineRadio1'>Troca</label>";
+                        echo "</div>";
+                    }
+                    elseif($linha["aquisicaoProd"] == 3){
+                        echo "<div class='form-check form-check-inline'>";
+                            echo "<input class='form-check-input' type='radio' name='aquisicao' id='inlineRadio1' value='option1' name='aquisicao' checked>";
+                            echo "<label class='form-check-label' for='inlineRadio1'>Novo</label>";
+                        echo "</div>";
+                    }
+                    echo "<div class='col-md mt-3'>";
+                        echo "<label for='exampleFormControlFile1'>Data da Compra</label>";
+                        echo "<input type='date' class='form-control p-1' id='exampleFormControlFile1' name='data' value = '". $linha["dataProd"] ."'>";
+                    echo "</div>";
+                    //LISTAR IMAGEM
+                    echo "<label class='mt-3' for='exampleFormControlFile1'>Termo de compra e venda:</label>";
+                    // Verifica se há um caminho de imagem no banco de dados
+                    if (!empty($linha["CompraVendaProd"])) {
+                        // Exibe a imagem
+                        echo "<div class='col-md d-flex justify-content-center mt-3'>";
+                            echo "<img src='data:image/png;base64," . base64_encode($linha["CompraVendaProd"]) . "' alt='Imagem do Produto' class='img-fluid'>";
+                        echo "</div>";
+                    } else {
+                        echo "<p>Nenhuma imagem disponível</p>";
+                    }
+
+
+                    //LISTAR BOTÕES
                     echo "<div class='row mb-3 d-flex justify-content-evenly mx-auto'>";
                         echo "<button type='submit' class='btn btn-primary btn-sm col-md-2 py-3 mt-3'>Editar Celular</button>";
                         echo "<a href='../Paginas/ListaDeProdutos.php' class='btn btn-secondary btn-sm col-md-2 py-3 mt-3'>Cancelar</a>";
